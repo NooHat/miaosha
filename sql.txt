@@ -1,0 +1,11 @@
+CREATE TABLE `miaosha`.`Untitled`  (
+  `id` bigint(0) NOT NULL COMMENT 'id',
+  `nickname` varchar(255) NOT NULL COMMENT '昵称',
+  `password` varchar(32) NOT NULL COMMENT '密码',
+  `salt` varchar(10) NULL COMMENT '盐',
+  `head` varchar(128) NULL COMMENT '头像，云存储的id',
+  `register_date` datetime(0) NULL COMMENT '注册时间',
+  `last_login_date` datetime(0) NULL COMMENT '上次登录时间',
+  `login_count` varchar(255) NULL COMMENT '登录次数',
+  PRIMARY KEY (`id`)
+);ENGINE=InnoDB DEFAULT CHARSET=utf8mb4

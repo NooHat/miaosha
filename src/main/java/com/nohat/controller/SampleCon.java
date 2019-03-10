@@ -1,6 +1,8 @@
 package com.nohat.controller;
 
 import com.nohat.domain.User;
+import com.nohat.redis.RedisService;
+import com.nohat.redis.UserKey;
 import com.nohat.service.UserService;
 import com.nohat.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,8 @@ public class SampleCon {
 
     @Autowired
     UserService userService;
-
+    @Autowired
+    RedisService redisService;
 
     @RequestMapping("/thymeleaf")
     public String thymeleaf(Model model){
@@ -34,8 +37,25 @@ public class SampleCon {
     @RequestMapping("/addUser")
     @ResponseBody
     public Result<Boolean> addUser(){
-
+        userService.addUser();
         return Result.success(true);
+    }
+
+    @RequestMapping("redisGet")
+    @ResponseBody
+    public Result<User> redisGet(){
+        User user = redisService.get(UserKey.getById,""+3,User.class);
+        return Result.success(user);
+    }
+    @RequestMapping("redisSet")
+    @ResponseBody
+    public Result<String> redisSet(){
+        User user=new User();
+        user.setId(3);
+        user.setName("sfds");
+
+        redisService.set(UserKey.getById,""+3,user);
+        return Result.success(redisService.get(UserKey.getById,""+3,String.class));
     }
 
 }

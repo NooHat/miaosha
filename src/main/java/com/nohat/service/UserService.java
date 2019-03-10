@@ -21,11 +21,11 @@ public class UserService {
 		User u1= new User();
 		u1.setId(2);
 		u1.setName("2222");
-
+		userDao.AddUser(u1);
 		User u2= new User();
 		u2.setId(1);
 		u2.setName("11111");
-
+		userDao.AddUser(u2);
 		return true;
 	}
 	
